@@ -2,6 +2,19 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
-        <file>main_toolbar.qml</file>
+        <file>MainToolbar.qml</file>
+        <file>img/test-icon.png</file>
+        <file>main.cpp</file>
+        <file>img/001-home.png</file>
+        <file>img/002-robot-arm.png</file>
+        <file>img/003-joystick-with-button.png</file>
+        <file>img/004-view.png</file>
+        <file>img/005-settings.png</file>
+        <file>img/006-tools.png</file>
+        <file>img/007-aim.png</file>
+        <file>img/008-area.png</file>
+        <file>MainCameraPage.qml</file>
+        <file>img/009-video-camera.png</file>
+        <file>img/test_cam_img.jpg</file>
     </qresource>
 </RCC>
