@@ -16,5 +16,10 @@
         <file>MainCameraPage.qml</file>
         <file>img/009-video-camera.png</file>
         <file>img/test_cam_img.jpg</file>
+        <file>ManualStickPage.qml</file>
+        <file>img/001-chevron-sign-down.png</file>
+        <file>img/002-up-arrow.png</file>
+        <file>img/003-arrow.png</file>
+        <file>img/004-arrow-1.png</file>
     </qresource>
 </RCC>

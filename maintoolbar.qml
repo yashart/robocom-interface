@@ -27,7 +27,7 @@ ToolBar {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    console.log("hello, home")
+                    mainView.currentIndex = 0
                 }
             }
         }
@@ -46,6 +46,12 @@ ToolBar {
                 font.pointSize: 30
                 font.family: "Verdana"
                 color: "#9E9E9E"
+            }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    mainView.currentIndex = 1
+                }
             }
         }
 

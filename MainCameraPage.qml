@@ -34,6 +34,15 @@ Item {
 
             Label {
                 text: qsTr("Режимы работы:")
+                font.pointSize: 15
+                font.family: "Verdana"
+                color: "#9E9E9E"
+            }
+
+            RadioButton {
+                text: qsTr("Наблюдение")
+                ButtonGroup.group: chooseWorkStateGroup
+                checked: true
             }
 
             RadioButton {

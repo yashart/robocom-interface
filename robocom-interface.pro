@@ -34,4 +34,5 @@ DISTFILES += \
     qtquickcontrols2.conf \
     main.qml \
     maintoolbar.qml \
-    MainCameraPage.qml
+    MainCameraPage.qml \
+    ManualStickPage.qml
