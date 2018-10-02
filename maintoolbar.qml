@@ -95,6 +95,23 @@ ToolBar {
             Image {
                 sourceSize.height: 64
                 sourceSize.width: 64
+                source: "qrc:/img/share.png"
+                Layout.alignment: Qt.AlignCenter
+            }
+            Label {
+                Layout.alignment: Qt.AlignCenter
+                text: qsTr("Сети")
+                font.pointSize: 30
+                font.family: "Verdana"
+                color: "#9E9E9E"
+            }
+        }
+
+        ColumnLayout {
+            Layout.alignment: Qt.AlignCenter
+            Image {
+                sourceSize.height: 64
+                sourceSize.width: 64
                 source: "qrc:/img/005-settings.png"
                 Layout.alignment: Qt.AlignCenter
             }

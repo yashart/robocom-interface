@@ -21,5 +21,6 @@
         <file>img/002-up-arrow.png</file>
         <file>img/003-arrow.png</file>
         <file>img/004-arrow-1.png</file>
+        <file>img/share.png</file>
     </qresource>
 </RCC>
