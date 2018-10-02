@@ -32,6 +32,26 @@ ApplicationWindow {
         }
     }
 
+    ListModel {
+        id: objectsModel
+        property int counterWithoutRemoves: 3
+        property int activeElem: 0
+        ListElement {
+            name: "скотч"
+            xpos: 15
+            ypos: 30
+            widthVal: 100
+            heightVal: 200
+        }
+        ListElement {
+            name: "виски"
+            xpos: 100
+            ypos: 300
+            widthVal: 40
+            heightVal: 30
+        }
+    }
+
     footer: MainToolbar {
         width: parent.width
         id: mainToolbar
