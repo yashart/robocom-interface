@@ -22,5 +22,7 @@
         <file>img/003-arrow.png</file>
         <file>img/004-arrow-1.png</file>
         <file>img/share.png</file>
+        <file>GrabObjectsPage.qml</file>
+        <file>img/x-button.png</file>
     </qresource>
 </RCC>

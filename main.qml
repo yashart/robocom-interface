@@ -18,6 +18,9 @@ ApplicationWindow {
 
         ManualStickPage {
         }
+
+        GrabObjectsPage {
+        }
     }
 
     footer: MainToolbar {

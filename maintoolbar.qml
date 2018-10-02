@@ -70,6 +70,12 @@ ToolBar {
                 font.family: "Verdana"
                 color: "#9E9E9E"
             }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    mainView.currentIndex = 2
+                }
+            }
         }
 
         ColumnLayout {
@@ -91,6 +97,7 @@ ToolBar {
         }
 
         ColumnLayout {
+            id: networkInfoColumnLayout
             Layout.alignment: Qt.AlignCenter
             Image {
                 sourceSize.height: 64
