@@ -36,4 +36,7 @@ DISTFILES += \
     maintoolbar.qml \
     MainCameraPage.qml \
     ManualStickPage.qml \
-    GrabObjectsPage.qml
+    GrabObjectsPage.qml \
+    NetworkInfoPage.qml \
+    CalibrationPage.qml \
+    PropertiesPage.qml

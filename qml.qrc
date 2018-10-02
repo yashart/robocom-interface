@@ -24,5 +24,8 @@
         <file>img/share.png</file>
         <file>GrabObjectsPage.qml</file>
         <file>img/x-button.png</file>
+        <file>NetworkInfoPage.qml</file>
+        <file>CalibrationPage.qml</file>
+        <file>PropertiesPage.qml</file>
     </qresource>
 </RCC>

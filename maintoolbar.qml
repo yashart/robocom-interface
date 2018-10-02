@@ -94,6 +94,12 @@ ToolBar {
                 font.family: "Verdana"
                 color: "#9E9E9E"
             }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    mainView.currentIndex = 3
+                }
+            }
         }
 
         ColumnLayout {
@@ -112,6 +118,12 @@ ToolBar {
                 font.family: "Verdana"
                 color: "#9E9E9E"
             }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    mainView.currentIndex = 4
+                }
+            }
         }
 
         ColumnLayout {
@@ -128,6 +140,12 @@ ToolBar {
                 font.pointSize: 30
                 font.family: "Verdana"
                 color: "#9E9E9E"
+            }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    mainView.currentIndex = 5
+                }
             }
         }
     }

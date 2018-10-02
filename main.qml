@@ -21,6 +21,15 @@ ApplicationWindow {
 
         GrabObjectsPage {
         }
+
+        CalibrationPage {
+        }
+
+        NetworkInfoPage {
+        }
+
+        PropertiesPage {
+        }
     }
 
     footer: MainToolbar {

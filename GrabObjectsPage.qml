@@ -77,17 +77,19 @@ Item {
                 text: qsTr("Добавить объект")
                 onClicked: {
                     objectsModel.append({
-                                            "name": "Object " + (objectsModel.count + 1),
+                                            "name": "Object " + objectsModel.counterWithoutRemoves,
                                             "xpos": Math.random() * 400,
                                             "ypos": Math.random() * 400,
                                             "colorVal": "red",
                                         })
+                    objectsModel.counterWithoutRemoves += 1;
                 }
             }
         }
 
         ListModel {
             id: objectsModel
+            property int counterWithoutRemoves: 3
             ListElement {
                 name: "Object 1"
                 xpos: 15
