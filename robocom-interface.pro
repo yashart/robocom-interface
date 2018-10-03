@@ -13,7 +13,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    main.cpp
+    main.cpp \
+    networkinterface.cpp
 
 RESOURCES += \
     qml.qrc
@@ -40,3 +41,6 @@ DISTFILES += \
     NetworkInfoPage.qml \
     CalibrationPage.qml \
     PropertiesPage.qml
+
+HEADERS += \
+    networkinterface.h

@@ -8,6 +8,7 @@ Item {
         ColumnLayout {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.topMargin: 100
+            spacing: 100
             Label {
                 Layout.alignment: Qt.AlignCenter
                 text: qsTr("X - Y")
@@ -43,6 +44,7 @@ Item {
         ColumnLayout {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.topMargin: 100
+            spacing: 100
             Label {
                 Layout.alignment: Qt.AlignCenter
                 text: qsTr("Z")
@@ -59,6 +61,8 @@ Item {
         ColumnLayout {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.topMargin: 100
+            spacing: 100
+
             Label {
                 Layout.alignment: Qt.AlignCenter
                 text: qsTr("Pitch - Row")
@@ -94,6 +98,8 @@ Item {
         ColumnLayout {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.topMargin: 100
+            spacing: 100
+
             Label {
                 Layout.alignment: Qt.AlignCenter
                 text: qsTr("Z")
