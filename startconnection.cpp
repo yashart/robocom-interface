@@ -2,6 +2,8 @@
 #include "QDebug"
 #include <QJsonObject>
 #include <QJsonDocument>
+#include <QTcpServer>
+
 
 
 
@@ -15,6 +17,13 @@ StartConnection::StartConnection(QObject *parent) : QObject(parent)
         }
     }
     this->udpSocket = new QUdpSocket(this);
+    tcpServer = new QTcpServer(this);
+    if (!tcpServer->listen(QHostAddress::Any, 5200)) {
+        qDebug() << "Critical error: cann't start tcp Server";
+        return;
+    }
+    connect(tcpServer, &QTcpServer::newConnection, this, &StartConnection::listen_host);
+
 }
 
 void StartConnection::brodcast_my_host()
@@ -29,9 +38,61 @@ void StartConnection::brodcast_my_host()
     udpSocket->writeDatagram(datagram, QHostAddress::Broadcast, 45454);
 }
 
-QString StartConnection::getHost() {
+void StartConnection::listen_host()
+{
+    this->serverSocket = tcpServer->nextPendingConnection();
+    connect(this->serverSocket, &QAbstractSocket::readyRead,
+            this, &StartConnection::read_host_info);
+    connect(this->serverSocket, &QAbstractSocket::disconnected,
+            this->serverSocket, &QObject::deleteLater);
+}
+
+void StartConnection::read_host_info()
+{
+    QString hostData = this->serverSocket->readAll();
+
+    QJsonDocument doc = QJsonDocument::fromJson(hostData.toUtf8());
+    QJsonObject obj;
+    if(!doc.isNull())
+    {
+        if(doc.isObject())
+        {
+            obj = doc.object();
+        }
+        else
+        {
+            qDebug() << "Document is not an object" << endl;
+        }
+    }
+    else
+    {
+        qDebug() << "Invalid JSON...\n" << endl;
+    }
+    if(obj["id"] != 1) {
+        qDebug() << "Error command";
+    }
+
+    this->computerHost = obj["address"].toString();
+    this->computerPort = quint16(obj["port"].toInt());
+
+    qDebug() << this->computerHost << ":" << this->computerPort;
+
+    this->serverSocket->disconnectFromHost();
+}
+
+QString StartConnection::getHost()
+{
     return this->host;
 }
-quint16 StartConnection::getPort() {
+quint16 StartConnection::getPort()
+{
     return this->port;
+}
+QString StartConnection::getComputerHost()
+{
+    return this->computerHost;
+}
+quint16 StartConnection::getComputerPort()
+{
+    return this->computerPort;
 }

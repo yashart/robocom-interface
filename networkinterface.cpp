@@ -25,7 +25,6 @@ void NetworkInterface::http_finished()
     }
     reply->deleteLater();
     reply = nullptr;
-
 }
 
 void NetworkInterface::http_ready_read()
