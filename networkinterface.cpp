@@ -8,6 +8,7 @@ NetworkInterface::NetworkInterface(QObject *parent) : QObject(parent)
 
 void NetworkInterface::start_request(const QUrl &requestedUrl)
 {
+    qDebug() << "url: " << requestedUrl;
     reply = qnam.get(QNetworkRequest(requestedUrl));
 
     connect(reply, &QNetworkReply::finished, this, &NetworkInterface::http_finished);
@@ -30,4 +31,11 @@ void NetworkInterface::http_finished()
 void NetworkInterface::http_ready_read()
 {
     qDebug() << reply->readAll();
+}
+
+void NetworkInterface::ready_to_http_slot(QString host, int port)
+{
+    QString url = "http://" + host + ":" + QString::number(port);
+    qDebug() << url;
+    start_request(QUrl(url));
 }

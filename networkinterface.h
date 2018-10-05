@@ -18,6 +18,7 @@ signals:
 public slots:
     void http_finished();
     void http_ready_read();
+    void ready_to_http_slot(QString host, int port);
 
 
 private:

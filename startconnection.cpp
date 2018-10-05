@@ -13,6 +13,7 @@ StartConnection::StartConnection(QObject *parent) : QObject(parent)
         if (address.protocol() == QAbstractSocket::IPv4Protocol && address != QHostAddress(QHostAddress::LocalHost))
         {
             this->host = address.toString();
+            emit hostChanged();
             break;
         }
     }
@@ -75,9 +76,10 @@ void StartConnection::read_host_info()
     this->computerHost = obj["address"].toString();
     this->computerPort = quint16(obj["port"].toInt());
 
-    qDebug() << this->computerHost << ":" << this->computerPort;
-
     this->serverSocket->disconnectFromHost();
+    emit ready_to_http(this->computerHost, this->computerPort);
+    emit computerHostChanged();
+    emit computerPortChanged();
 }
 
 QString StartConnection::getHost()

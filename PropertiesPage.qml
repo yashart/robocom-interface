@@ -4,8 +4,50 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls.Material 2.3
 
 Item {
-    Label {
-        anchors.centerIn: parent
-        text: qsTr("Информация о состоянии внешних устройств")
+    ColumnLayout {
+        anchors.fill: parent
+        Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+        spacing: 50
+
+        Label {
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            text: qsTr("Информация о состоянии внешних устройств")
+        }
+
+        Label {
+            Layout.alignment: Qt.AlignTop
+            Layout.leftMargin: 50
+            text: qsTr("Мой хост: ") + connectionInfo.host
+        }
+
+        Label {
+            Layout.alignment: Qt.AlignTop
+            Layout.leftMargin: 50
+            text: qsTr("Мой порт: ") + connectionInfo.port
+        }
+
+        Label {
+            Layout.alignment: Qt.AlignTop
+            Layout.leftMargin: 50
+            text: qsTr("Хост компа: ") + connectionInfo.computerHost
+        }
+
+        Label {
+            Layout.alignment: Qt.AlignTop
+            Layout.leftMargin: 50
+            text: qsTr("Порт компа: ") + connectionInfo.computerPort
+        }
+
+        Rectangle {
+            Layout.fillHeight: true
+        }
+
+        Button {
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            text: qsTr("Послать бродкаст")
+            onClicked: {
+                connectionInfo.brodcast_my_host()
+            }
+        }
     }
 }

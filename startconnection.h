@@ -11,15 +11,37 @@
 class StartConnection : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QString computerHost
+               READ getComputerHost
+               NOTIFY computerHostChanged)
+
+    Q_PROPERTY(quint16 computerPort
+               READ getComputerPort
+               NOTIFY computerPortChanged)
+
+    Q_PROPERTY(QString host
+               READ getHost
+               NOTIFY hostChanged)
+
+    Q_PROPERTY(quint16 port
+               READ getPort
+               NOTIFY portChanged)
+
 public:
     explicit StartConnection(QObject *parent = nullptr);
-    void brodcast_my_host();
+    Q_INVOKABLE void brodcast_my_host();
+
     QString getHost();
     QString getComputerHost();
     quint16 getPort();
     quint16 getComputerPort();
 
 signals:
+    void ready_to_http(QString host, int port);
+    void computerHostChanged();
+    void computerPortChanged();
+    void hostChanged();
+    void portChanged();
 
 public slots:
     void listen_host();
