@@ -3,7 +3,6 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 
-
 NetworkInterface::NetworkInterface(QObject *parent) : QObject(parent)
 {
 
@@ -20,7 +19,7 @@ void NetworkInterface::start_request_main_cam_img(const QUrl &requestedUrl)
     reply->setReadBufferSize(0);
 
     connect(reply, &QNetworkReply::finished, this, &NetworkInterface::http_finished);
-    connect(reply, &QIODevice::readyRead, this, &NetworkInterface::http_ready_read_img_cam);
+    //connect(reply, &QIODevice::readyRead, this, &NetworkInterface::http_ready_read_img_cam);
 }
 
 void NetworkInterface::http_finished()
@@ -32,6 +31,7 @@ void NetworkInterface::http_finished()
         start_request_main_cam_img(redirectionTarget.toUrl());
         return;
     }
+    http_ready_read_img_cam();
     reply->deleteLater();
     reply = nullptr;
 }
