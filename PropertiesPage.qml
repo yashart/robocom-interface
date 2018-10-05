@@ -11,6 +11,7 @@ Item {
 
         Label {
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            Layout.topMargin: 50
             text: qsTr("Информация о состоянии внешних устройств")
         }
 
@@ -44,6 +45,17 @@ Item {
 
         Button {
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            text: qsTr("Обновлять картинку")
+            onClicked: {
+                //imgRefreshTimer.start()
+                httpInterface.ready_to_http_slot(connectionInfo.computerHost,
+                                                 connectionInfo.computerPort)
+            }
+        }
+
+        Button {
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            Layout.bottomMargin: 50
             text: qsTr("Послать бродкаст")
             onClicked: {
                 connectionInfo.brodcast_my_host()

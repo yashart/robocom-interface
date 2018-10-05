@@ -52,6 +52,12 @@ ApplicationWindow {
         }
     }
 
+    Timer {
+        id: imgRefreshTimer;
+            interval: 1000; running: false; repeat: true
+            onTriggered: httpInterface.ready_to_http_slot()
+        }
+
     footer: MainToolbar {
         width: parent.width
         id: mainToolbar

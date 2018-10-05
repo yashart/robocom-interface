@@ -24,7 +24,8 @@ Item {
 
         Image {
             Layout.alignment: Qt.AlignCenter
-            source: "qrc:/img/test_cam_img.jpg"
+            //source: "qrc:/img/test_cam_img.jpg"
+            source: "data:image/png;base64," + httpInterface.frontCamImgData
         }
 
         ColumnLayout {

@@ -1,18 +1,26 @@
 #include "networkinterface.h"
 #include "QDebug"
+#include <QJsonObject>
+#include <QJsonDocument>
+
 
 NetworkInterface::NetworkInterface(QObject *parent) : QObject(parent)
 {
 
 }
 
-void NetworkInterface::start_request(const QUrl &requestedUrl)
+void NetworkInterface::start_request_main_cam_img(const QUrl &requestedUrl)
 {
     qDebug() << "url: " << requestedUrl;
-    reply = qnam.get(QNetworkRequest(requestedUrl));
+    QByteArray postData;
+    postData.append("id=3");
+    QNetworkRequest request = QNetworkRequest(requestedUrl);
+    request.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("application/x-www-form-urlencoded"));
+    reply = qnam.post(request, postData);
+    reply->setReadBufferSize(0);
 
     connect(reply, &QNetworkReply::finished, this, &NetworkInterface::http_finished);
-    connect(reply, &QIODevice::readyRead, this, &NetworkInterface::http_ready_read);
+    connect(reply, &QIODevice::readyRead, this, &NetworkInterface::http_ready_read_img_cam);
 }
 
 void NetworkInterface::http_finished()
@@ -21,21 +29,58 @@ void NetworkInterface::http_finished()
     if (!redirectionTarget.isNull()) {
         qDebug() << redirectionTarget.toUrl();
 
-        start_request(redirectionTarget.toUrl());
+        start_request_main_cam_img(redirectionTarget.toUrl());
         return;
     }
     reply->deleteLater();
     reply = nullptr;
 }
 
-void NetworkInterface::http_ready_read()
+void NetworkInterface::http_ready_read_img_cam()
 {
-    qDebug() << reply->readAll();
+    QString data = reply->readAll();
+    QJsonDocument doc = QJsonDocument::fromJson(data.toUtf8());
+    QJsonObject obj;
+    if(!doc.isNull())
+    {
+        if(doc.isObject())
+        {
+            obj = doc.object();
+        }
+        else
+        {
+            qDebug() << "Document is not an object" << endl;
+            return;
+        }
+    }
+    else
+    {
+        qDebug() << "Invalid JSON...";
+        return;
+    }
+    if(obj["id"].toInt() != 4) {
+        qDebug() << "Error command";
+        return;
+    }
+
+    qDebug() << obj["eyex"].toInt();
+
+    this->frontCamImgData = obj["scene"].toString();
+    emit frontCamImgDataChanged();
 }
 
 void NetworkInterface::ready_to_http_slot(QString host, int port)
 {
+    this->comphost = host;
+    this->compport = port;
     QString url = "http://" + host + ":" + QString::number(port);
-    qDebug() << url;
-    start_request(QUrl(url));
+    start_request_main_cam_img(QUrl(url));
+}
+
+void NetworkInterface::ready_to_http_slot() {
+    ready_to_http_slot(this->comphost, this->compport);
+}
+
+QString NetworkInterface::getFrontCamImgData() {
+    return this->frontCamImgData;
 }
