@@ -1,4 +1,4 @@
-QT += quick
+QT += quick network core
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -14,7 +14,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    networkinterface.cpp
+    networkinterface.cpp \
+    startconnection.cpp
 
 RESOURCES += \
     qml.qrc
@@ -43,4 +44,5 @@ DISTFILES += \
     PropertiesPage.qml
 
 HEADERS += \
-    networkinterface.h
+    networkinterface.h \
+    startconnection.h
