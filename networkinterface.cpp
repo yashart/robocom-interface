@@ -1,6 +1,7 @@
 #include "networkinterface.h"
 #include "QDebug"
 #include <QJsonObject>
+#include <QJsonArray>
 #include <QJsonDocument>
 
 NetworkInterface::NetworkInterface(QObject *parent) : QObject(parent)
@@ -69,6 +70,12 @@ void NetworkInterface::http_ready_read_img_cam()
     emit frontCamImgDataChanged();
     this->serverJsonId = obj["id"].toInt();
     emit serverJsonIdChanged();
+
+    QJsonArray recognizedObjects = obj["objects"].toArray();
+    for (int i = 0; i < obj["count"].toInt(); i++) {
+        QJsonObject currentObject = recognizedObjects[i].toObject();
+        qDebug() << "array ids" << currentObject["id"].toInt();
+    }
 }
 
 void NetworkInterface::ready_to_http_slot(QString host, int port)
