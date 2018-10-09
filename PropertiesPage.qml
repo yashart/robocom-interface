@@ -39,6 +39,12 @@ Item {
             text: qsTr("Порт компа: ") + connectionInfo.computerPort
         }
 
+        Label {
+            Layout.alignment: Qt.AlignTop
+            Layout.leftMargin: 50
+            text: qsTr("id команды в JSON с компа: ") + httpInterface.serverJsonId
+        }
+
         Rectangle {
             Layout.fillHeight: true
         }

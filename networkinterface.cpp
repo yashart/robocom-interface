@@ -67,6 +67,8 @@ void NetworkInterface::http_ready_read_img_cam()
 
     this->frontCamImgData = obj["scene"].toString();
     emit frontCamImgDataChanged();
+    this->serverJsonId = obj["id"].toInt();
+    emit serverJsonIdChanged();
 }
 
 void NetworkInterface::ready_to_http_slot(QString host, int port)
@@ -83,4 +85,8 @@ void NetworkInterface::ready_to_http_slot() {
 
 QString NetworkInterface::getFrontCamImgData() {
     return this->frontCamImgData;
+}
+
+int NetworkInterface::getServerJsonId() {
+    return this->serverJsonId;
 }
