@@ -23,7 +23,8 @@ class NetworkInterface : public QObject
 
 public:
     explicit NetworkInterface(QObject *parent = nullptr);
-    Q_INVOKABLE void start_request_main_cam_img(const QUrl &requestedUrl);
+    Q_INVOKABLE void start_request_main_cam_img();
+    Q_INVOKABLE void start_request_take_by_coordinate(int x, int y);
 
     QString getFrontCamImgData();
     int getServerJsonId();
@@ -53,6 +54,7 @@ private:
     int serverJsonId = -1;
     int compport = 0;
     QAbstractItemModel* objectsModel;
+    QUrl url;
 };
 
 #endif // NETWORKINTERFACE_H

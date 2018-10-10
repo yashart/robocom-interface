@@ -31,6 +31,14 @@ Item {
             Image {
                 anchors.fill: parent
                 source: "data:image/png;base64," + httpInterface.frontCamImgData
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        if (pointModeRadio.checked == true) {
+                            httpInterface.start_request_take_by_coordinate(mouseX, mouseY);
+                        }
+                    }
+                }
             }
         }
 

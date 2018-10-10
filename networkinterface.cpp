@@ -3,22 +3,21 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QUrlQuery>
 #include "detectedobject.h"
 
 
-NetworkInterface::NetworkInterface(QObject *parent) : QObject(parent)
-{
+NetworkInterface::NetworkInterface(QObject *parent) : QObject(parent) {
     objectsModel=new QStandardItemModel(this);
     objectsModel->insertColumn(0);
 
 }
 
-void NetworkInterface::start_request_main_cam_img(const QUrl &requestedUrl)
-{
-    qDebug() << "url: " << requestedUrl;
+void NetworkInterface::start_request_main_cam_img() {
+
     QByteArray postData;
     postData.append("id=3");
-    QNetworkRequest request = QNetworkRequest(requestedUrl);
+    QNetworkRequest request = QNetworkRequest(this->url);
     request.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("application/x-www-form-urlencoded"));
     reply = qnam.post(request, postData);
     reply->setReadBufferSize(0);
@@ -27,13 +26,11 @@ void NetworkInterface::start_request_main_cam_img(const QUrl &requestedUrl)
     //connect(reply, &QIODevice::readyRead, this, &NetworkInterface::http_ready_read_img_cam);
 }
 
-void NetworkInterface::http_finished()
-{
+void NetworkInterface::http_finished() {
     const QVariant redirectionTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
     if (!redirectionTarget.isNull()) {
-        qDebug() << redirectionTarget.toUrl();
-
-        start_request_main_cam_img(redirectionTarget.toUrl());
+        this->url = redirectionTarget.toUrl();
+        start_request_main_cam_img();
         return;
     }
     http_ready_read_img_cam();
@@ -41,25 +38,20 @@ void NetworkInterface::http_finished()
     reply = nullptr;
 }
 
-void NetworkInterface::http_ready_read_img_cam()
-{
+void NetworkInterface::http_ready_read_img_cam() {
     QString data = reply->readAll();
     QJsonDocument doc = QJsonDocument::fromJson(data.toUtf8());
     QJsonObject obj;
-    if(!doc.isNull())
-    {
-        if(doc.isObject())
-        {
+    if(!doc.isNull()) {
+        if(doc.isObject()) {
             obj = doc.object();
         }
-        else
-        {
+        else {
             qDebug() << "Document is not an object" << endl;
             return;
         }
     }
-    else
-    {
+    else {
         qDebug() << "Invalid JSON...";
         return;
     }
@@ -90,12 +82,12 @@ void NetworkInterface::http_ready_read_img_cam()
     emit objectsModelChanged();
 }
 
-void NetworkInterface::ready_to_http_slot(QString host, int port)
-{
+void NetworkInterface::ready_to_http_slot(QString host, int port) {
     this->comphost = host;
     this->compport = port;
     QString url = "http://" + host + ":" + QString::number(port);
-    start_request_main_cam_img(QUrl(url));
+    this->url = QUrl(url);
+    start_request_main_cam_img();
 }
 
 void NetworkInterface::ready_to_http_slot() {
@@ -129,4 +121,16 @@ void NetworkInterface::addDetectedObject(int id, int x, int y,
 
 void NetworkInterface::clearObjectsModel() {
     objectsModel->removeRows(0, objectsModel->rowCount());
+}
+
+void NetworkInterface::start_request_take_by_coordinate(int x, int y) {
+    QUrlQuery postData;
+    postData.addQueryItem("id", "5");
+    postData.addQueryItem("x", QString::number(x));
+    postData.addQueryItem("y", QString::number(y));
+    postData.addQueryItem("scene", frontCamImgData);
+
+    QNetworkRequest request = QNetworkRequest(this->url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("application/x-www-form-urlencoded"));
+    reply = qnam.post(request, postData.query(QUrl::FullyEncoded).toUtf8());
 }
