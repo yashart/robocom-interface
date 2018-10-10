@@ -15,7 +15,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     networkinterface.cpp \
-    startconnection.cpp
+    startconnection.cpp \
+    detectedobject.cpp
 
 RESOURCES += \
     qml.qrc
@@ -45,4 +46,5 @@ DISTFILES += \
 
 HEADERS += \
     networkinterface.h \
-    startconnection.h
+    startconnection.h \
+    detectedobject.h

@@ -22,10 +22,16 @@ Item {
             }
         }
 
-        Image {
+        Rectangle {
             Layout.alignment: Qt.AlignCenter
             //source: "qrc:/img/test_cam_img.jpg"
-            source: "data:image/png;base64," + httpInterface.frontCamImgData
+            width: 720
+            height: 480
+            color: "transparent"
+            Image {
+                anchors.fill: parent
+                source: "data:image/png;base64," + httpInterface.frontCamImgData
+            }
         }
 
         ColumnLayout {
@@ -41,16 +47,19 @@ Item {
             }
 
             RadioButton {
+                id: viewModeRadio
                 text: qsTr("Наблюдение")
                 ButtonGroup.group: chooseWorkStateGroup
                 checked: true
             }
 
             RadioButton {
+                id: pointModeRadio
                 text: qsTr("Целеуказание")
                 ButtonGroup.group: chooseWorkStateGroup
             }
             RadioButton {
+                id: eyeTrackingModeRadio
                 text: qsTr("Следовать за взглядом")
                 ButtonGroup.group: chooseWorkStateGroup
             }

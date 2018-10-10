@@ -26,18 +26,27 @@ Item {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.topMargin: 15
             spacing: 10
-            Image {
-                id: cameraImage
+
+            Rectangle {
                 Layout.alignment: Qt.AlignHCenter
-                source: "qrc:/img/test_cam_img.jpg"
+                width: 720
+                height: 480
+                color: "transparent"
+                //source: "qrc:/img/test_cam_img.jpg"
+                Image {
+                    id: cameraImage
+                    anchors.fill: parent
+                    source: "data:image/png;base64," + httpInterface.frontCamImgData
+                }
+
                 Repeater {
-                    model: objectsModel
+                    model: httpInterface.objectsModel
                     delegate: Rectangle {
                         color: "transparent"
-                        width: widthVal
-                        height: heightVal
-                        x: xpos
-                        y: ypos
+                        width: edit.width
+                        height: edit.height
+                        x: edit.x
+                        y: edit.y
                         border.width: 2
                         border.color: (objectsModel.activeElem == index)?"red":"black"
                         MouseArea {
@@ -97,7 +106,7 @@ Item {
             spacing: 10
 
             Repeater {
-                model: objectsModel
+                model: httpInterface.objectsModel
                 delegate: RowLayout {
                     Layout.alignment: Qt.AlignLeft
                     spacing: -1
@@ -118,7 +127,7 @@ Item {
                         border.color: (objectsModel.activeElem == index)?"red":"black"
                         Label {
                             anchors.centerIn: parent
-                            text: name
+                            text: edit.type
                             font.pointSize: 20
                             color: (objectsModel.activeElem == index)?"red":"#B0BEC5"
                         }
@@ -129,25 +138,12 @@ Item {
                             }
                         }
                     }
-                    /*
-                    Image {
-                        source: "qrc:/img/x-button.png"
-                        sourceSize.height: 32
-                        sourceSize.width: 32
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: {
-                                objectsModel.remove(index)
-                            }
-                        }
-                    }
-                    */
                 }
             }
             Rectangle {
                 Layout.fillHeight: true
             }
-
+            /*
             Button {
                 Layout.alignment: Qt.AlignRight | Qt.AlignBottom
                 Material.background: Material.Green
@@ -175,6 +171,7 @@ Item {
                     }
                 }
             }
+            */
         }
     }
 }

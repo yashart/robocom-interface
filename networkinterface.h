@@ -5,6 +5,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QImage>
+#include <QStandardItemModel>
 
 
 class NetworkInterface : public QObject
@@ -16,6 +17,9 @@ class NetworkInterface : public QObject
     Q_PROPERTY(int serverJsonId
                READ getServerJsonId
                NOTIFY serverJsonIdChanged)
+    Q_PROPERTY(QAbstractItemModel* objectsModel
+               READ getObjectsModel
+               NOTIFY objectsModelChanged)
 
 public:
     explicit NetworkInterface(QObject *parent = nullptr);
@@ -24,15 +28,22 @@ public:
     QString getFrontCamImgData();
     int getServerJsonId();
 
+    QAbstractItemModel* getObjectsModel();
+
 signals:
     void frontCamImgDataChanged();
     void serverJsonIdChanged();
+    void objectsModelChanged();
 
 public slots:
     void http_finished();
     void http_ready_read_img_cam();
     Q_INVOKABLE void ready_to_http_slot(QString host, int port);
     Q_INVOKABLE void ready_to_http_slot();
+    Q_INVOKABLE void addDetectedObject(int id, int x, int y,
+                                       int width, int height,
+                                       QString type);
+    Q_INVOKABLE void clearObjectsModel();
 
 private:
     QNetworkAccessManager qnam;
@@ -41,6 +52,7 @@ private:
     QString comphost = "";
     int serverJsonId = -1;
     int compport = 0;
+    QAbstractItemModel* objectsModel;
 };
 
 #endif // NETWORKINTERFACE_H
