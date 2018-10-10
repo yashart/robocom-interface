@@ -31,6 +31,14 @@ Item {
             Image {
                 anchors.fill: parent
                 source: "data:image/png;base64," + httpInterface.frontCamImgData
+                Image {
+                    source: "qrc:/img/004-view.png"
+                    x: httpInterface.eyeX
+                    y: httpInterface.eyeY
+                    width: 32
+                    height: 32
+                }
+
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {

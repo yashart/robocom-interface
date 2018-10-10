@@ -20,6 +20,12 @@ class NetworkInterface : public QObject
     Q_PROPERTY(QAbstractItemModel* objectsModel
                READ getObjectsModel
                NOTIFY objectsModelChanged)
+    Q_PROPERTY(int eyeX
+               READ getEyeX
+               NOTIFY eyePosChanged)
+    Q_PROPERTY(int eyeY
+               READ getEyeY
+               NOTIFY eyePosChanged)
 
 public:
     explicit NetworkInterface(QObject *parent = nullptr);
@@ -29,13 +35,15 @@ public:
 
     QString getFrontCamImgData();
     int getServerJsonId();
-
     QAbstractItemModel* getObjectsModel();
+    int getEyeX();
+    int getEyeY();
 
 signals:
     void frontCamImgDataChanged();
     void serverJsonIdChanged();
     void objectsModelChanged();
+    void eyePosChanged();
 
 public slots:
     void http_finished();
@@ -56,6 +64,8 @@ private:
     int compport = 0;
     QAbstractItemModel* objectsModel;
     QUrl url;
+    int eyeX;
+    int eyeY;
 };
 
 #endif // NETWORKINTERFACE_H

@@ -60,8 +60,6 @@ void NetworkInterface::http_ready_read_img_cam() {
         return;
     }
 
-    qDebug() << obj["eyex"].toInt();
-
     this->frontCamImgData = obj["scene"].toString();
     emit frontCamImgDataChanged();
     this->serverJsonId = obj["id"].toInt();
@@ -78,8 +76,10 @@ void NetworkInterface::http_ready_read_img_cam() {
                 currentObject["height"].toInt(),
                 currentObject["typename"].toString());
     }
-    qDebug() << objectsModel->data(objectsModel->index(1, 0));
     emit objectsModelChanged();
+    this->eyeX = obj["eyex"].toInt();
+    this->eyeY = obj["eyey"].toInt();
+    emit eyePosChanged();
 }
 
 void NetworkInterface::ready_to_http_slot(QString host, int port) {
@@ -147,3 +147,11 @@ void NetworkInterface::start_request_take_object_by_id(int id, int x, int y) {
     request.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("application/x-www-form-urlencoded"));
     reply = qnam.post(request, postData.query(QUrl::FullyEncoded).toUtf8());
 }
+
+int NetworkInterface::getEyeX() {
+    return this->eyeX;
+}
+int NetworkInterface::getEyeY() {
+    return this->eyeY;
+}
+
