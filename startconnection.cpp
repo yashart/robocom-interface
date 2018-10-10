@@ -5,8 +5,6 @@
 #include <QTcpServer>
 
 
-
-
 StartConnection::StartConnection(QObject *parent) : QObject(parent)
 {
     foreach (const QHostAddress &address, QNetworkInterface::allAddresses()) {

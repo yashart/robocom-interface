@@ -68,6 +68,15 @@ Item {
                     Material.background: Material.Green
                     text: qsTr("Взять")
                     font.pointSize: 40
+                    onClicked: {
+                        var currElem = httpInterface.objectsModel.data(
+                                    httpInterface.objectsModel.index(
+                                        objectsModel.activeElem, 0));
+                        httpInterface.start_request_take_object_by_id(
+                                    currElem.id,
+                                    parseInt(currElem["x"]) + parseInt(currElem["width"])/2,
+                                    parseInt(currElem["y"]) + parseInt(currElem["height"])/2)
+                    }
                 }
                 Rectangle {
                     Layout.fillWidth: true
@@ -91,7 +100,7 @@ Item {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            if (objectsModel.activeElem + 1 != objectsModel.count) {
+                            if (objectsModel.activeElem + 1 < httpInterface.objectsModel.rowCount()) {
                                 objectsModel.activeElem += 1;
                             }
                         }

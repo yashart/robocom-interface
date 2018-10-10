@@ -25,6 +25,7 @@ public:
     explicit NetworkInterface(QObject *parent = nullptr);
     Q_INVOKABLE void start_request_main_cam_img();
     Q_INVOKABLE void start_request_take_by_coordinate(int x, int y);
+    Q_INVOKABLE void start_request_take_object_by_id(int id, int x, int y);
 
     QString getFrontCamImgData();
     int getServerJsonId();

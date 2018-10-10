@@ -134,3 +134,16 @@ void NetworkInterface::start_request_take_by_coordinate(int x, int y) {
     request.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("application/x-www-form-urlencoded"));
     reply = qnam.post(request, postData.query(QUrl::FullyEncoded).toUtf8());
 }
+
+void NetworkInterface::start_request_take_object_by_id(int id, int x, int y) {
+    QUrlQuery postData;
+    postData.addQueryItem("id", "6");
+    postData.addQueryItem("objectid", QString::number(id));
+    postData.addQueryItem("scene", frontCamImgData);
+    postData.addQueryItem("x", QString::number(x));
+    postData.addQueryItem("y", QString::number(y));
+
+    QNetworkRequest request = QNetworkRequest(this->url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("application/x-www-form-urlencoded"));
+    reply = qnam.post(request, postData.query(QUrl::FullyEncoded).toUtf8());
+}

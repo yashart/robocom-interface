@@ -53,7 +53,7 @@ Item {
             }
         }
         Repeater {
-            model: 5
+            model: httpInterface.objectsModel
             delegate: RowLayout {
                 Layout.alignment: Qt.AlignCenter
                 Rectangle {
@@ -65,7 +65,7 @@ Item {
                     border.color: "black"
                     Label {
                         anchors.centerIn: parent
-                        text: qsTr("Объект 1")
+                        text: qsTr("Объект id: " + edit.id)
                     }
                 }
 
@@ -78,7 +78,7 @@ Item {
                     border.color: "black"
                     Label {
                         anchors.centerIn: parent
-                        text: qsTr("x: 50, y: 34, z: -7431")
+                        text: qsTr("x: " + edit.x + " y: " + edit.y)
                     }
                 }
 
@@ -91,7 +91,7 @@ Item {
                     border.color: "black"
                     Label {
                         anchors.centerIn: parent
-                        text: qsTr("скотч")
+                        text: edit.type
                     }
                 }
             }
