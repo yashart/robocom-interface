@@ -51,10 +51,12 @@ void NetworkInterface::http_ready_read_img_cam() {
             return;
         }
     }
+
     else {
         qDebug() << "Invalid JSON...";
         return;
     }
+
     if(obj["id"].toInt() != 4) {
         qDebug() << "Error command";
         return;

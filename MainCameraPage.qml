@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.3
 
@@ -37,6 +37,15 @@ Item {
                     y: httpInterface.eyeY
                     width: 32
                     height: 32
+                }
+
+                VoiceGridImg {
+                    id: voiceGridImg
+                    x: 0
+                    y: 0
+                    width: parent.width
+                    height: parent.height
+                    opacity: 0
                 }
 
                 MouseArea {
@@ -78,6 +87,18 @@ Item {
                 id: eyeTrackingModeRadio
                 text: qsTr("Следовать за взглядом")
                 ButtonGroup.group: chooseWorkStateGroup
+            }
+            RadioButton {
+                id: voiceTrackingModeRadio
+                text: qsTr("Взять голосом")
+                ButtonGroup.group: chooseWorkStateGroup
+                onCheckedChanged: {
+                    if (checked == true) {
+                        voiceGridImg.opacity = 0.5
+                    }else {
+                        voiceGridImg.opacity = 0
+                    }
+                }
             }
         }
     }

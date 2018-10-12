@@ -9,6 +9,8 @@ ApplicationWindow {
     height: 800
     title: qsTr("robocom-interface")
 
+    signal keyReceived(int key)
+
     SwipeView {
         id: mainView
         currentIndex: 0
@@ -29,6 +31,11 @@ ApplicationWindow {
         }
 
         PropertiesPage {
+        }
+
+        Keys.onPressed: {
+            console.log("StackView.onPressed")
+            keyReceived(event.key)
         }
     }
 

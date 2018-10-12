@@ -27,5 +27,6 @@
         <file>NetworkInfoPage.qml</file>
         <file>CalibrationPage.qml</file>
         <file>PropertiesPage.qml</file>
+        <file>VoiceGridImg.qml</file>
     </qresource>
 </RCC>

@@ -42,7 +42,8 @@ DISTFILES += \
     GrabObjectsPage.qml \
     NetworkInfoPage.qml \
     CalibrationPage.qml \
-    PropertiesPage.qml
+    PropertiesPage.qml \
+    VoiceGridImg.qml
 
 HEADERS += \
     networkinterface.h \
