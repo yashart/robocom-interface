@@ -71,3 +71,12 @@ response json:
 "eyey": 15
 }
 ```
+id - always 4
+
+scene - png image from frontal camera, decoded to base64 string
+
+count - number of recognized objects
+
+eyex, eyey - coordinates on image of gaze direction
+
+objects - list of recognized objects
