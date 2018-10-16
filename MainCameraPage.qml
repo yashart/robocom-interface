@@ -102,4 +102,10 @@ Item {
             }
         }
     }
+    Connections {
+        target: microphoneConnection
+        onCommandIdChanged: {
+            console.log("hi changed")
+        }
+    }
 }

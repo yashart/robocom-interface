@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
-        <file>MainToolbar.qml</file>
         <file>img/test-icon.png</file>
         <file>main.cpp</file>
         <file>img/001-home.png</file>
@@ -28,5 +27,6 @@
         <file>CalibrationPage.qml</file>
         <file>PropertiesPage.qml</file>
         <file>VoiceGridImg.qml</file>
+        <file>MainToolbar.qml</file>
     </qresource>
 </RCC>

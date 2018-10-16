@@ -4,6 +4,7 @@
 #include <QQmlContext>
 #include "networkinterface.h"
 #include "startconnection.h"
+#include "microphoneconnection.h"
 
 
 int main(int argc, char *argv[])
@@ -13,7 +14,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     StartConnection connectionInfo;
-    //connectionInfo.brodcast_my_host();
+    MicrophoneConnection microphoneConnection;
 
     NetworkInterface httpInterface;
     QObject::connect(&connectionInfo, SIGNAL(ready_to_http(QString, int)),
@@ -22,6 +23,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     QQmlContext * ctx = engine.rootContext();
 
+    ctx->setContextProperty("microphoneConnection", &microphoneConnection);
     ctx->setContextProperty("connectionInfo", &connectionInfo);
     ctx->setContextProperty("httpInterface", &httpInterface);
 

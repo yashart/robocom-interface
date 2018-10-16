@@ -45,6 +45,12 @@ Item {
             text: qsTr("id команды в JSON с компа: ") + httpInterface.serverJsonId
         }
 
+        Label {
+            Layout.alignment: Qt.AlignTop
+            Layout.leftMargin: 50
+            text: qsTr("id микрофон команды: ") + microphoneConnection.commandId
+        }
+
         Rectangle {
             Layout.fillHeight: true
         }

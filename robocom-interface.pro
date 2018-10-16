@@ -16,7 +16,8 @@ SOURCES += \
     main.cpp \
     networkinterface.cpp \
     startconnection.cpp \
-    detectedobject.cpp
+    detectedobject.cpp \
+    microphoneconnection.cpp
 
 RESOURCES += \
     qml.qrc
@@ -36,16 +37,17 @@ DISTFILES += \
     img/test-icon.png \
     qtquickcontrols2.conf \
     main.qml \
-    maintoolbar.qml \
     MainCameraPage.qml \
     ManualStickPage.qml \
     GrabObjectsPage.qml \
     NetworkInfoPage.qml \
     CalibrationPage.qml \
     PropertiesPage.qml \
-    VoiceGridImg.qml
+    VoiceGridImg.qml \
+    MainToolbar.qml
 
 HEADERS += \
     networkinterface.h \
     startconnection.h \
-    detectedobject.h
+    detectedobject.h \
+    microphoneconnection.h
