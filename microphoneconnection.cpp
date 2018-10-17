@@ -41,8 +41,16 @@ void MicrophoneConnection::read_host_info() {
     }
     this->commandId = obj["id"].toInt();
     emit commandIdChanged();
+    if (this->commandId == 4) {
+        this->number = obj["number"].toInt();
+        emit numberChanged();
+    }
 }
 
 int MicrophoneConnection::getCommandId() {
     return this->commandId;
+}
+
+int MicrophoneConnection::getNumber() {
+    return this->number;
 }

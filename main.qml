@@ -16,6 +16,7 @@ ApplicationWindow {
         currentIndex: 0
         anchors.fill: parent
         MainCameraPage {
+            id: mainCameraPage
         }
 
         ManualStickPage {
@@ -53,5 +54,26 @@ ApplicationWindow {
     footer: MainToolbar {
         width: parent.width
         id: mainToolbar
+    }
+
+    Connections {
+        target: microphoneConnection
+        onCommandIdChanged: {
+            if (microphoneConnection.commandId == 5) {
+                if (mainView.currentIndex != 5) {
+                    mainView.currentIndex += 1;
+                }
+            }
+            if (microphoneConnection.commandId == 6) {
+                if (mainView.currentIndex != 0) {
+                    mainView.currentIndex -= 1;
+                }
+            }
+            if (microphoneConnection.commandId == 3) {
+                mainCameraPage.viewModeRadio.checked = true;
+            }
+
+            console.log("voice command: " + microphoneConnection.commandId)
+        }
     }
 }

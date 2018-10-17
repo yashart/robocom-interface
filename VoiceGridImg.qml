@@ -4,6 +4,7 @@ import QtQuick.Controls 2.4
 
 Rectangle {
     id: voiceGridImg
+    property int deep: 0
 
     Rectangle {
         id: voiceTab1
@@ -157,60 +158,78 @@ Rectangle {
                 y += 0;
                 width = width / 3;
                 height = height / 3;
+                voiceGridImg.deep += 1;
             }
             if (key === Qt.Key_2) {
                 x += width / 3;
                 y += 0;
                 width = width / 3;
                 height = height / 3;
+                voiceGridImg.deep += 1;
             }
             if (key === Qt.Key_3) {
                 x += 2 * width / 3;
                 y += 0;
                 width = width / 3;
                 height = height / 3;
+                voiceGridImg.deep += 1;
             }
             if (key === Qt.Key_4) {
                 x += 0;
                 y += height / 3;
                 width = width / 3;
                 height = height / 3;
+                voiceGridImg.deep += 1;
             }
             if (key === Qt.Key_5) {
                 x += width / 3;
                 y += height / 3;
                 width = width / 3;
                 height = height / 3;
+                voiceGridImg.deep += 1;
             }
             if (key === Qt.Key_6) {
                 x += 2 * width / 3;
                 y += height / 3;
                 width = width / 3;
                 height = height / 3;
+                voiceGridImg.deep += 1;
             }
             if (key === Qt.Key_7) {
                 x += 0;
                 y += 2 * height / 3;
                 width = width / 3;
                 height = height / 3;
+                voiceGridImg.deep += 1;
             }
             if (key === Qt.Key_8) {
                 x += width / 3;
                 y += 2 * height / 3;
                 width = width / 3;
                 height = height / 3;
+                voiceGridImg.deep += 1;
             }
             if (key === Qt.Key_9) {
                 x += 2 * width / 3;
                 y += 2 * height / 3;
                 width = width / 3;
                 height = height / 3;
+                voiceGridImg.deep += 1;
             }
             if (key == Qt.Key_R) {
                 x = 0;
                 y = 0;
                 width = parent.width;
                 height = parent.height;
+                voiceGridImg.deep = 0;
+            }
+            if (voiceGridImg.deep === 4) {
+                console.log("x, y: " + Math.round(x) + " " + Math.round(y));
+                x = 0;
+                y = 0;
+                width = parent.width;
+                height = parent.height;
+                voiceGridImg.deep = 0;
             }
         }
     }

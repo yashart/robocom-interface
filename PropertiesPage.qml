@@ -7,7 +7,7 @@ Item {
     ColumnLayout {
         anchors.fill: parent
         Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-        spacing: 50
+        spacing: 20
 
         Label {
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter

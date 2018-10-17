@@ -12,12 +12,18 @@ class MicrophoneConnection : public QObject
     Q_PROPERTY(int commandId
                READ getCommandId
                NOTIFY commandIdChanged)
+    Q_PROPERTY(int number
+               READ getNumber
+               NOTIFY numberChanged)
+
 public:
     explicit MicrophoneConnection(QObject *parent = nullptr);
     int getCommandId();
+    int getNumber();
 
 signals:
     void commandIdChanged();
+    void numberChanged();
 
 public slots:
     void listen_host();
@@ -28,7 +34,8 @@ private:
     QTcpSocket *microphoneSocket = nullptr;
 
     quint16 port = 5005;
-    int commandId;
+    int commandId = 0;
+    int number = 0;
 };
 
 #endif // MICROPHONECONNECTION_H
