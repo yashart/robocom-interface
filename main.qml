@@ -5,8 +5,8 @@ import QtQuick.Controls.Material 2.3
 ApplicationWindow {
     id: window
     visible: true
-    width: 1080
-    height: 800
+    width: 1920
+    height: 1200
     title: qsTr("robocom-interface")
 
     signal keyReceived(int key)
@@ -48,7 +48,8 @@ ApplicationWindow {
     Timer {
         id: imgRefreshTimer;
         interval: 1000; running: false; repeat: true
-        onTriggered: httpInterface.ready_to_http_slot()
+        onTriggered: httpInterface.ready_to_http_slot(connectionInfo.computerHost,
+                                                      connectionInfo.computerPort)
     }
 
     footer: MainToolbar {
@@ -72,7 +73,19 @@ ApplicationWindow {
             if (microphoneConnection.commandId == 3) {
                 mainCameraPage.viewModeRadio.checked = true;
             }
-
+            if (microphoneConnection.commandId == 2) {
+                var currElem = httpInterface.objectsModel.data(
+                                httpInterface.objectsModel.index(
+                                    objectsModel.activeElem, 0));
+                httpInterface.start_request_take_object_by_id(
+                            currElem.id,
+                            parseInt(currElem["x"]) + parseInt(currElem["width"])/2,
+                            parseInt(currElem["y"]) + parseInt(currElem["height"])/2)
+            }
+            if (microphoneConnection.commandId == 1) {
+                objectsModel.activeElem = (objectsModel.activeElem + 1) % httpInterface.objectsModel.rowCount();
+                console.log("!!!!!!!!!!!" + objectsModel.activeElem);
+            }
             console.log("voice command: " + microphoneConnection.commandId)
         }
     }

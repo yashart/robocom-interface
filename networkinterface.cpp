@@ -14,13 +14,12 @@ NetworkInterface::NetworkInterface(QObject *parent) : QObject(parent) {
 }
 
 void NetworkInterface::start_request_main_cam_img() {
-
     QByteArray postData;
     postData.append("id=3");
     QNetworkRequest request = QNetworkRequest(this->url);
     request.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("application/x-www-form-urlencoded"));
     reply = qnam.post(request, postData);
-    reply->setReadBufferSize(0);
+    //reply->setReadBufferSize(0);
 
     connect(reply, &QNetworkReply::finished, this, &NetworkInterface::http_finished);
     //connect(reply, &QIODevice::readyRead, this, &NetworkInterface::http_ready_read_img_cam);
@@ -39,8 +38,17 @@ void NetworkInterface::http_finished() {
 }
 
 void NetworkInterface::http_ready_read_img_cam() {
-    QString data = reply->readAll();
-    QJsonDocument doc = QJsonDocument::fromJson(data.toUtf8());
+    //reply = qobject_cast<QNetworkReply*>(sender());
+    QByteArray data = reply->readAll();
+    qDebug() << reply->rawHeaderPairs();
+    qDebug() << reply->error();
+
+    QString str = QString::fromUtf8(data.data(), data.size());
+    int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    qDebug() << QVariant(statusCode).toString();
+
+    qDebug() << data;
+    QJsonDocument doc = QJsonDocument::fromJson(str.toUtf8());
     QJsonObject obj;
     if(!doc.isNull()) {
         if(doc.isObject()) {

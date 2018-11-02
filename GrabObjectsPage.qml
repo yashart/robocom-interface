@@ -58,6 +58,7 @@ Item {
                     }
                 }
             }
+            /*
             RowLayout {
                 Layout.alignment: Qt.AlignLeft
                 Layout.topMargin: 15
@@ -78,9 +79,11 @@ Item {
                                     parseInt(currElem["y"]) + parseInt(currElem["height"])/2)
                     }
                 }
+
                 Rectangle {
                     Layout.fillWidth: true
                 }
+
 
                 Image {
                     source: "qrc:/img/002-up-arrow.png"
@@ -107,6 +110,7 @@ Item {
                     }
                 }
             }
+            */
         }
 
         ColumnLayout {
@@ -151,6 +155,21 @@ Item {
             }
             Rectangle {
                 Layout.fillHeight: true
+            }
+            Button {
+                Layout.alignment: Qt.AlignLeft
+                Material.background: Material.Green
+                text: qsTr("Взять")
+                font.pointSize: 40
+                onClicked: {
+                    var currElem = httpInterface.objectsModel.data(
+                                httpInterface.objectsModel.index(
+                                    objectsModel.activeElem, 0));
+                    httpInterface.start_request_take_object_by_id(
+                                currElem.id,
+                                parseInt(currElem["x"]) + parseInt(currElem["width"])/2,
+                                parseInt(currElem["y"]) + parseInt(currElem["height"])/2)
+                }
             }
             /*
             Button {

@@ -59,9 +59,9 @@ Item {
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             text: qsTr("Обновлять картинку")
             onClicked: {
-                //imgRefreshTimer.start()
-                httpInterface.ready_to_http_slot(connectionInfo.computerHost,
-                                                 connectionInfo.computerPort)
+                imgRefreshTimer.start()
+                //httpInterface.ready_to_http_slot(connectionInfo.computerHost,
+                //                                 connectionInfo.computerPort)
             }
         }
 

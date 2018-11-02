@@ -44,10 +44,13 @@ DISTFILES += \
     CalibrationPage.qml \
     PropertiesPage.qml \
     VoiceGridImg.qml \
-    MainToolbar.qml
+    MainToolbar.qml \
+    android-sources/AndroidManifest.xml
 
 HEADERS += \
     networkinterface.h \
     startconnection.h \
     detectedobject.h \
     microphoneconnection.h
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-sources
