@@ -97,4 +97,10 @@ Item {
             }
         }
     }
+    Label {
+        id: unconectedLabel
+        anchors.centerIn: parent
+        visible: (httpInterface.objectsModel.rowCount() === 0)?true:false
+        text: qsTr("Подключитесь к тележке")
+    }
 }

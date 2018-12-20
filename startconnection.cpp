@@ -22,7 +22,6 @@ StartConnection::StartConnection(QObject *parent) : QObject(parent)
         return;
     }
     connect(tcpServer, &QTcpServer::newConnection, this, &StartConnection::listen_host);
-
 }
 
 void StartConnection::brodcast_my_host()
@@ -48,6 +47,11 @@ void StartConnection::listen_host()
 
 void StartConnection::read_host_info()
 {
+    if (this->serverSocket->state() != QAbstractSocket::ConnectedState) {
+        qDebug() << "state: " << this->serverSocket->state();
+        this->serverSocket->abort();
+        return;
+    }
     QString hostData = this->serverSocket->readAll();
 
     QJsonDocument doc = QJsonDocument::fromJson(hostData.toUtf8());

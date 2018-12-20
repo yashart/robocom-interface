@@ -26,9 +26,13 @@ Item {
         Rectangle {
             Layout.alignment: Qt.AlignCenter
             //source: "qrc:/img/test_cam_img.jpg"
-            width: 720
+            width: 640
             height: 480
             color: "transparent"
+            Label {
+                anchors.centerIn: parent
+                text: qsTr("Подключитесь к тележке")
+            }
             Image {
                 anchors.fill: parent
                 source: "data:image/png;base64," + httpInterface.frontCamImgData

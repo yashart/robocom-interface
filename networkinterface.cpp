@@ -39,6 +39,10 @@ void NetworkInterface::http_finished() {
 
 void NetworkInterface::http_ready_read_img_cam() {
     //reply = qobject_cast<QNetworkReply*>(sender());
+    if (reply->error() != QNetworkReply::NoError) {
+        qDebug() << "reply error " << reply->error();
+        return;
+    }
     QByteArray data = reply->readAll();
     qDebug() << reply->rawHeaderPairs();
     qDebug() << reply->error();
@@ -157,6 +161,37 @@ void NetworkInterface::start_request_take_object_by_id(int id, int x, int y) {
     request.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("application/x-www-form-urlencoded"));
     reply = qnam.post(request, postData.query(QUrl::FullyEncoded).toUtf8());
 }
+
+void NetworkInterface::start_request_take_full_g_coordinates(int g1, int g2, int g3, int g4,\
+                                                           int g5, int g6, int g7) {
+    QUrlQuery postData;
+    postData.addQueryItem("id", "7");
+    postData.addQueryItem("g1", QString::number(g1));
+    postData.addQueryItem("g2", QString::number(g2));
+    postData.addQueryItem("g3", QString::number(g3));
+    postData.addQueryItem("g4", QString::number(g4));
+    postData.addQueryItem("g5", QString::number(g5));
+    postData.addQueryItem("g6", QString::number(g6));
+    postData.addQueryItem("g7", QString::number(g7));
+
+    QNetworkRequest request = QNetworkRequest(this->url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("application/x-www-form-urlencoded"));
+    reply = qnam.post(request, postData.query(QUrl::FullyEncoded).toUtf8());
+}
+
+void NetworkInterface::start_request_take_full_x_coordinates(int g7, float x, float y, float z) {
+    QUrlQuery postData;
+    postData.addQueryItem("id", "8");
+    postData.addQueryItem("g7", QString::number(g7));
+    postData.addQueryItem("x", QString::number(x));
+    postData.addQueryItem("y", QString::number(y));
+    postData.addQueryItem("z", QString::number(z));
+
+    QNetworkRequest request = QNetworkRequest(this->url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("application/x-www-form-urlencoded"));
+    reply = qnam.post(request, postData.query(QUrl::FullyEncoded).toUtf8());
+}
+
 
 int NetworkInterface::getEyeX() {
     return this->eyeX;

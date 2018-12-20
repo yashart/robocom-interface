@@ -29,10 +29,14 @@ Item {
 
             Rectangle {
                 Layout.alignment: Qt.AlignHCenter
-                width: 720
+                width: 640
                 height: 480
                 color: "transparent"
                 //source: "qrc:/img/test_cam_img.jpg"
+                Label {
+                    anchors.centerIn: parent
+                    text: qsTr("Подключитесь к тележке")
+                }
                 Image {
                     id: cameraImage
                     anchors.fill: parent

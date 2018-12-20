@@ -32,6 +32,10 @@ public:
     Q_INVOKABLE void start_request_main_cam_img();
     Q_INVOKABLE void start_request_take_by_coordinate(int x, int y);
     Q_INVOKABLE void start_request_take_object_by_id(int id, int x, int y);
+    Q_INVOKABLE void start_request_take_full_g_coordinates(int g1, int g2, int g3, int g4,
+                                                         int g5, int g6, int g7);
+    Q_INVOKABLE void start_request_take_full_x_coordinates(int g7, float x, float y, float z);
+
 
     QString getFrontCamImgData();
     int getServerJsonId();

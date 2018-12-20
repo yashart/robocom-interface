@@ -45,6 +45,13 @@ ApplicationWindow {
         property int activeElem: 0
     }
 
+    ListModel {
+        id: savedCoordinatesModel
+        ListElement {
+
+        }
+    }
+
     Timer {
         id: imgRefreshTimer;
         interval: 1000; running: false; repeat: true
