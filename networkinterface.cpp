@@ -192,6 +192,16 @@ void NetworkInterface::start_request_take_full_x_coordinates(int g7, float x, fl
     reply = qnam.post(request, postData.query(QUrl::FullyEncoded).toUtf8());
 }
 
+void NetworkInterface::start_request_predefined_coordinates(int number) {
+    QUrlQuery postData;
+    postData.addQueryItem("id", "9");
+    postData.addQueryItem("coordid", QString::number(number));
+
+    QNetworkRequest request = QNetworkRequest(this->url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("application/x-www-form-urlencoded"));
+    reply = qnam.post(request, postData.query(QUrl::FullyEncoded).toUtf8());
+}
+
 
 int NetworkInterface::getEyeX() {
     return this->eyeX;

@@ -6,9 +6,10 @@ import QtQuick.Controls.Material 2.3
 Item {
     ColumnLayout {
         Layout.alignment: Qt.AlignCenter
-        spacing: -1
 
         RowLayout {
+            width: 920
+            height: 50
             Layout.alignment: Qt.AlignCenter
             Rectangle {
                 Layout.alignment: Qt.AlignCenter
@@ -52,7 +53,17 @@ Item {
                 }
             }
         }
-        Repeater {
+
+        Rectangle {
+            height: 20
+            width: 920
+        }
+
+        ListView {
+            cacheBuffer: 0
+            Layout.alignment: Qt.AlignCenter
+            height: 400
+            width: 920
             model: httpInterface.objectsModel
             delegate: RowLayout {
                 Layout.alignment: Qt.AlignCenter

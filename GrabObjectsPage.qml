@@ -122,7 +122,9 @@ Item {
             Layout.topMargin: 15
             spacing: 10
 
-            Repeater {
+            ListView {
+                width: 250
+                height: 400
                 model: httpInterface.objectsModel
                 delegate: RowLayout {
                     Layout.alignment: Qt.AlignLeft

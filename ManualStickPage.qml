@@ -278,12 +278,13 @@ Item {
                     text: qsTr("Предустановленные координаты")
                 }
                 TextField {
+                    id: predefinedCoordinatesTextField
                     inputMethodHints: Qt.ImhDigitsOnly
                 }
                 Button {
                     text: qsTr("Использовать")
                     onClicked: {
-
+                        httpInterface.start_request_predefined_coordinates(Math.round(predefinedCoordinatesTextField.text));
                     }
                 }
             }

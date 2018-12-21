@@ -35,6 +35,7 @@ public:
     Q_INVOKABLE void start_request_take_full_g_coordinates(int g1, int g2, int g3, int g4,
                                                          int g5, int g6, int g7);
     Q_INVOKABLE void start_request_take_full_x_coordinates(int g7, float x, float y, float z);
+    Q_INVOKABLE void start_request_predefined_coordinates(int number);
 
 
     QString getFrontCamImgData();
