@@ -105,6 +105,24 @@ Item {
                     }
                 }
             }
+            Rectangle {
+                Layout.fillHeight: true
+                color: "transparent"
+            }
+            Label {
+                text: qsTr("Обновление картинки")
+                font.pointSize: 15
+                font.family: "Verdana"
+                color: "#9E9E9E"
+            }
+            Button {
+                text: qsTr("Обновить")
+                Layout.bottomMargin: 30
+                onClicked: {
+                    httpInterface.ready_to_http_slot(connectionInfo.computerHost,
+                                                     connectionInfo.computerPort)
+                }
+            }
         }
     }
 }
